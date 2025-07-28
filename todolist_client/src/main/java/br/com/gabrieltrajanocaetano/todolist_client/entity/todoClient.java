@@ -17,7 +17,7 @@ import lombok.Setter;
 @Builder
 @Entity
 @Table(name = "todoClient")
-public class todoClient {
+public class TodoClient {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
