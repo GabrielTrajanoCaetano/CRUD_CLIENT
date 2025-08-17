@@ -1,5 +1,6 @@
 package br.com.gabrieltrajanocaetano.todolist_client.ClientController.clientToResponse;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Column;
 import lombok.*;
 
@@ -19,6 +20,7 @@ public class ClientResponse {
 
     private Double income;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate birthDate;
 
     private Integer children;
