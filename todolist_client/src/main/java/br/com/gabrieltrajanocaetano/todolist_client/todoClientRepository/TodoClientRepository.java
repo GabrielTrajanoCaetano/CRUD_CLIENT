@@ -9,7 +9,4 @@ import br.com.gabrieltrajanocaetano.todolist_client.entity.TodoClient;
 
 public interface TodoClientRepository extends JpaRepository<TodoClient, Long>{
 
-
-
-    
 }

@@ -33,6 +33,11 @@ public class ClientController {
         return ResponseEntity.status(HttpStatus.OK).body(todoClientService.listById(id));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> updateById(@PathVariable ("id") Long id, @RequestBody ClientRequest request){
+        return ResponseEntity.status(HttpStatus.OK).body(todoClientService.update(id, request));
+    }
+
 
 
 }

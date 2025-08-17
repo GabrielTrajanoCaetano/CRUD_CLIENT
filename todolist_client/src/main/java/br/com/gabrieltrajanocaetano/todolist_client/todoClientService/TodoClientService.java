@@ -1,18 +1,16 @@
 package br.com.gabrieltrajanocaetano.todolist_client.todoClientService;
 
+import br.com.gabrieltrajanocaetano.todolist_client.ClientController.ClientRequest.ClientRequest;
 import br.com.gabrieltrajanocaetano.todolist_client.ClientController.clientToResponse.ClientResponse;
 import br.com.gabrieltrajanocaetano.todolist_client.entity.TodoClient;
-import br.com.gabrieltrajanocaetano.todolist_client.ClientController.ClientRequest.ClientRequest;
 import br.com.gabrieltrajanocaetano.todolist_client.todoClientRepository.TodoClientRepository;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class TodoClientService {
@@ -49,9 +47,19 @@ public class TodoClientService {
        return clientRepository.findAll();
     }
 
-    /*
-    public List<TodoClient> update(){
 
+    public ClientResponse update(Long id, ClientRequest request){
+        TodoClient client = clientRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("ID não encontrado"));
+
+
+            BeanUtils.copyProperties(request, client);
+
+            TodoClient clientUpdateSave = clientRepository.save(client);
+
+            ClientResponse clientResponse = new ClientResponse();
+            BeanUtils.copyProperties(clientUpdateSave,clientResponse);
+
+            return clientResponse;
     }
 
     /*
